@@ -18,11 +18,11 @@ class AllTasksActivity : AppCompatActivity() {
         setContentView(R.layout.activity_all_tasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = ListAdapter(applicationContext, arrayListOf("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"))
+        recyclerView.adapter = ListAdapter(applicationContext, IntArray(100, { i -> i + 1 }).toMutableList())
     }
 }
 
-class ListAdapter(var c: Context, var lists: ArrayList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapter(var c: Context, var lists: MutableList<Int>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view: View = LayoutInflater.from(parent.context).inflate(R.layout.cell, parent, false)
         return ViewHolder(view)
@@ -33,12 +33,12 @@ class ListAdapter(var c: Context, var lists: ArrayList<String>): RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolder).bindData(lists[position])
+        (holder as ViewHolder).bindData(lists[position].toString())
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bindData(_list: String) {
-            itemView.tv_animal_type.text = _list
+            itemView.textLabel.text = _list
         }
     }
 }
