@@ -11,34 +11,17 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_all_tasks.*
 import kotlinx.android.synthetic.main.cell.view.*
 
-class AllTasksActivity : AppCompatActivity() {
+class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_tasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = ListAdapter(applicationContext, IntArray(100, { i -> i + 1 }).toMutableList())
-    }
-}
-
-class ListAdapter(var c: Context, var lists: MutableList<Int>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        var view: View = LayoutInflater.from(parent.context).inflate(R.layout.cell, parent, false)
-        return ViewHolder(view)
+        recyclerView.adapter = RecyclerAdapter(applicationContext, IntArray(100, { i -> i + 1 }).toMutableList(), this)
     }
 
-    override fun getItemCount(): Int {
-        return lists.size
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolder).bindData(lists[position].toString())
-    }
-
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        fun bindData(_list: String) {
-            itemView.textLabel.text = _list
-        }
+    override fun didSelected(item: View, position: Int) {
+        println(position)
     }
 }
