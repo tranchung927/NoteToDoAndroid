@@ -29,6 +29,4 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
         }
         startActivity(intent)
     }
-
-
 }

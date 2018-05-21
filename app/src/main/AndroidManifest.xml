@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TaskDescriptionActivity" android:parentActivityName=".AllTasksActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AllTasksActivity"></meta-data>
         </activity>
     </application>
 

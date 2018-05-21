@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NoteToDoAndroid</string>
+    <string name="edit_message">Enter your number</string>
 </resources>
