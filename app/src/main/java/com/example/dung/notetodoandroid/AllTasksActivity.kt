@@ -1,5 +1,6 @@
 package com.example.dung.notetodoandroid
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,9 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
 
     private var numbers = IntArray(100, { i -> i + 1 }).toMutableList()
 
+    private val adapter by lazy { RecyclerAdapter(applicationContext, numbers, this) }
+    private val REQUSET_CODE = 1
+
     companion object {
         val PASSING_NUMBER = "passing number"
     }
@@ -20,13 +24,25 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
         setContentView(R.layout.activity_all_tasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = RecyclerAdapter(applicationContext, numbers, this)
+        recyclerView.adapter = adapter
     }
 
     override fun didSelected(item: View, position: Int) {
         val intent = Intent(this, TaskDescriptionActivity::class.java).apply {
             putExtra(PASSING_NUMBER, numbers[position].toString())
         }
-        startActivity(intent)
+        startActivityForResult(intent, REQUSET_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUSET_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val number = data?.getStringExtra(TaskDescriptionActivity.CALL_BACK).toString().toIntOrNull()
+                if (number != null) {
+                    numbers.add(number)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
     }
 }
