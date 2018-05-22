@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_all_tasks.*
 import kotlinx.android.synthetic.main.tool_bar.*
@@ -31,6 +33,25 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
         recyclerView.adapter = adapter
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_graph, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_add -> {
+                addNewNumber()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun addNewNumber() {
+        val intent = Intent(this, TaskDescriptionActivity::class.java)
+        startActivityForResult(intent, REQUSET_CODE)
+    }
     override fun didSelected(item: View, position: Int) {
         val intent = Intent(this, TaskDescriptionActivity::class.java).apply {
             putExtra(PASSING_NUMBER, numbers[position].toString())
