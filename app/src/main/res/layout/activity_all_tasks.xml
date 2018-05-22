@@ -6,8 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".AllTasksActivity">
 
+    <include
+        android:id="@+id/toolBarAllTask"
+        layout="@layout/tool_bar" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarAllTask"
+        tools:layout_editor_absoluteX="0dp" />
+
 </android.support.constraint.ConstraintLayout>

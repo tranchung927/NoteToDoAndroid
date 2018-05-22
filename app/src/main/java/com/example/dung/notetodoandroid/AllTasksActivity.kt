@@ -5,8 +5,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import android.view.View
 import kotlinx.android.synthetic.main.activity_all_tasks.*
+import kotlinx.android.synthetic.main.tool_bar.*
 
 class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
 
@@ -22,6 +24,8 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_tasks)
+        val toolbar: Toolbar = findViewById(R.id.toolBarAllTask)
+        setSupportActionBar(toolbar)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter

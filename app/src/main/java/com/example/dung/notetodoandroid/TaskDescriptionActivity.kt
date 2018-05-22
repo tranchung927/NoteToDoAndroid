@@ -25,7 +25,7 @@ class TaskDescriptionActivity: AppCompatActivity() {
         message.let {
             editText.setText(it)
         }
-        editText.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        editText.setOnKeyListener(View.OnKeyListener { v, keyCode, _ ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 //Perform Code
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
