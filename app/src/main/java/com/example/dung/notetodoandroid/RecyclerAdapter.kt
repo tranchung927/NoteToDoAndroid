@@ -29,6 +29,11 @@ class RecyclerAdapter(var context: Context, var lists: MutableList<Int>, var del
         }
     }
 
+    fun removeAt(position: Int) {
+        lists.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     class ViewHolderCustom(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bindData(_number: Int) {
             itemView.textLabel.text = _number.toString()
