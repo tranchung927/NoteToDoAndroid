@@ -6,9 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toolbar
 
 import kotlinx.android.synthetic.main.activity_task_description.*
 
@@ -52,5 +52,28 @@ class TaskDescriptionActivity: AppCompatActivity() {
             }
             false
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    override fun startActivity(intent: Intent?) {
+        super.startActivity(intent)
+        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
+    }
+
+    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
+        super.startActivityForResult(intent, requestCode)
+        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
+    }
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out)
     }
 }

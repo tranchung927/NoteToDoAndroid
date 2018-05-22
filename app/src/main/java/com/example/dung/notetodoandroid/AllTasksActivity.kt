@@ -10,7 +10,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_all_tasks.*
-import kotlinx.android.synthetic.main.tool_bar.*
 
 class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
 
@@ -69,5 +68,20 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
                 }
             }
         }
+    }
+
+    override fun startActivity(intent: Intent?) {
+        super.startActivity(intent)
+        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
+    }
+
+    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
+        super.startActivityForResult(intent, requestCode)
+        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out)
     }
 }
