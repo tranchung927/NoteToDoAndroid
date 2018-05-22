@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toolbar
+
 import kotlinx.android.synthetic.main.activity_task_description.*
 
 
@@ -21,10 +23,19 @@ class TaskDescriptionActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_description)
 
+        setSupportActionBar(findViewById(R.id.tool_bar_description))
+
+        if (supportActionBar != null) {
+            supportActionBar!!.setTitle("")
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setDisplayShowHomeEnabled(true)
+        }
+
         val message = intent.getStringExtra(AllTasksActivity.PASSING_NUMBER)
         message.let {
             editText.setText(it)
         }
+
         editText.setOnKeyListener(View.OnKeyListener { v, keyCode, _ ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 //Perform Code
