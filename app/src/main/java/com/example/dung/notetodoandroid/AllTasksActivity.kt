@@ -48,6 +48,9 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
     }
 
     private fun addNewNumber() {
+        if (adapter.positionForSelected != null) {
+            adapter.positionForSelected = null
+        }
         val intent = Intent(this, TaskDescriptionActivity::class.java)
         startActivityForResult(intent, REQUSET_CODE)
     }
@@ -63,7 +66,11 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
             if (resultCode == Activity.RESULT_OK) {
                 val number = data?.getStringExtra(TaskDescriptionActivity.CALL_BACK).toString().toIntOrNull()
                 if (number != null) {
-                    numbers.add(number)
+                    if (adapter.positionForSelected != null) {
+                        numbers.set(adapter.positionForSelected!!, number)
+                    } else {
+                        numbers.add(number)
+                    }
                     adapter.notifyDataSetChanged()
                 }
             }

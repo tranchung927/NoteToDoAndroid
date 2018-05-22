@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.cell.view.*
 
 class RecyclerAdapter(var context: Context, var lists: MutableList<Int>, var delegate: RecyclerAdapterInterface?): RecyclerView.Adapter<RecyclerAdapter.ViewHolderCustom>()  {
 
+    var positionForSelected: Int? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCustom {
         val view = LayoutInflater.from(parent.context)
         val cell = ViewHolderCustom(view.inflate(R.layout.cell, parent, false))
@@ -23,6 +25,7 @@ class RecyclerAdapter(var context: Context, var lists: MutableList<Int>, var del
         holder.bindData(lists[position])
         holder.itemView.setOnClickListener {
             delegate?.didSelected(holder.itemView, position)
+            positionForSelected = position
         }
     }
 
