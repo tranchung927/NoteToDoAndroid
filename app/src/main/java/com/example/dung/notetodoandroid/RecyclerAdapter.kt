@@ -28,6 +28,13 @@ class RecyclerAdapter(var context: Context, var lists: MutableList<Int>, var del
             positionForSelected = position
         }
     }
+//    val swipeHandler = object : RecyclerItemTouchHelper(this) {
+//        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//            val adapter = recyclerView.adapter as RecyclerAdapter
+//            numbers.removeAt(viewHolder.adapterPosition)
+//            adapter.notifyDataSetChanged()
+//        }
+//    }
 
     fun removeAt(position: Int) {
         lists.removeAt(position)

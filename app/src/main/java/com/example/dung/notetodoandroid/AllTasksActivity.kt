@@ -36,7 +36,8 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
         val swipeHandler = object : RecyclerItemTouchHelper(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val adapter = recyclerView.adapter as RecyclerAdapter
-                adapter.removeAt(viewHolder.adapterPosition)
+                numbers.removeAt(viewHolder.adapterPosition)
+                adapter.notifyDataSetChanged()
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
