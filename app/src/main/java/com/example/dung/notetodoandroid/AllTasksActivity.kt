@@ -13,7 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_all_tasks.*
 
-class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
+class AllTasksActivity : BaseActivity(), RecyclerAdapterInterface {
 
     private var numbers = IntArray(100, { i -> i + 1 }).toMutableList()
 
@@ -87,20 +87,5 @@ class AllTasksActivity : AppCompatActivity(), RecyclerAdapterInterface {
                 }
             }
         }
-    }
-
-    override fun startActivity(intent: Intent?) {
-        super.startActivity(intent)
-        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
-    }
-
-    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
-        super.startActivityForResult(intent, requestCode)
-        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
-    }
-
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out)
     }
 }

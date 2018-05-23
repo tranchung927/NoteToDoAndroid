@@ -13,7 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_task_description.*
 
 
-class TaskDescriptionActivity: AppCompatActivity() {
+class TaskDescriptionActivity: BaseActivity() {
 
     companion object {
         val CALL_BACK = "call back"
@@ -62,18 +62,5 @@ class TaskDescriptionActivity: AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-    override fun startActivity(intent: Intent?) {
-        super.startActivity(intent)
-        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
-    }
-
-    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
-        super.startActivityForResult(intent, requestCode)
-        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out)
-    }
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out)
     }
 }
